@@ -6,7 +6,7 @@ from torch.utils.data import Dataset,DataLoader
 
 dataset = load_dataset("ccdv/pubmed-summarization","document",split="train[:10]")
 dataset = " ".join(dataset['abstract'])
-tokenizer = tiktoken.get_encoding('cl100k_base')
+# tokenizer = tiktoken.get_encoding('cl100k_base')
 
 class PrepareData(Dataset):
     def __init__(self,text,tokenizer,max_length,stride):
@@ -41,8 +41,5 @@ def dataload(text,num_batches,context_len,stride,drop_last=True,num_workers=0):
 data = dataload(dataset,num_batches=4,context_len=8,stride=2)
 data = iter(data)
 input1,target1 = next(data)
-
-print(target1)
-
 
 
