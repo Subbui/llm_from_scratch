@@ -38,7 +38,7 @@ def dataload(text,num_batches,context_len,stride,drop_last=True,num_workers=0):
                            drop_last=drop_last)
     return load_data
     
-data = dataload(dataset,num_batches=4,context_len=8,stride=2)
+data = dataload(dataset,num_batches=4,context_len=10,stride=2)
 data = iter(data)
 input1,target1 = next(data)
 
