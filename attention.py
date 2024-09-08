@@ -47,12 +47,12 @@ class MultiHeadAttention(nn.Module):
         return context_vec
     
 
-input1 = input1.type(torch.FloatTensor)
-batch_data = torch.stack((input1,input1),dim=0)
-print(batch_data.shape)
-ca = MultiHeadAttention(d_in=10, d_out=3, context_length=10, dropout=0.1, num_heads=3)
-logits=  ca(batch_data)
-print(logits)
+# input1 = input1.type(torch.FloatTensor)
+# batch_data = torch.stack((input1,input1),dim=0)
+# print(batch_data.shape)
+# ca = MultiHeadAttention(d_in=10, d_out=3, context_length=10, dropout=0.1, num_heads=3)
+# logits=  ca(batch_data)
+# print(logits)
 
 # inputs = torch.tensor(
 # [[0.43, 0.15, 0.89], # Your (x^1)
