@@ -1,0 +1,4 @@
+*.ipynb
+data/
+model/
+*.pdf
