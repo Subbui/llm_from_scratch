@@ -1,8 +1,8 @@
 import torch
 import torch.nn as nn
 import tiktoken
-from dataloader import DataLoader_v1
-from multiheadattention import MultiHeadAttention
+from src.GPT_Train.dataloader import DataLoader_v1
+from src.GPT_Train.multiheadattention import MultiHeadAttention
 
 gpt_124M_config = {
 

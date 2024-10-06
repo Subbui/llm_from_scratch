@@ -1,9 +1,9 @@
-from gpt import generate_text, GPT
+from src.GPT_Train.gpt import generate_text, GPT
 import tiktoken
 import torch
-from rough import calc_loss_batch, calc_loss_loader
-from gpt import GPT
-from dataloader import DataLoader_v1
+from src.GPT_Train.loss import calc_loss_batch, calc_loss_loader
+from src.GPT_Train.gpt import GPT
+from src.GPT_Train.dataloader import DataLoader_v1
 
 config_gpt = {
     'vocab' : 50257,
@@ -14,7 +14,7 @@ config_gpt = {
     'drop_rate':0.1,
     'qkv_bias':False
 }
-with open(r"C:\Subbu\llms_from_scratch\data\verdict.txt",'r',encoding='utf-8') as f:
+with open(r"C:\Subbu\llm_from_scratch\data\verdict.txt",'r',encoding='utf-8') as f:
     data = f.read()
 tokenizer = tiktoken.get_encoding('gpt2')
 
@@ -105,12 +105,12 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 torch.manual_seed(123)
 model = GPT(config_gpt)
 model.to(device)
-optimizer = torch.optim.AdamW(model.parameters(), lr=0.0004, weight_decay=0.1) #A
-num_epochs = 10
-train_losses, val_losses, tokens_seen = train_gpt(
-    model, train_loader, val_loader, optimizer, device,
-    num_epoch=num_epochs, eval_freq=5, eval_iter=1,
-    start_context="Life is all about", tokenizer=tokenizer)
+# optimizer = torch.optim.AdamW(model.parameters(), lr=0.0004, weight_decay=0.1) #A
+# num_epochs = 5
+# train_losses, val_losses, tokens_seen = train_gpt(
+#     model, train_loader, val_loader, optimizer, device,
+#     num_epoch=num_epochs, eval_freq=5, eval_iter=1,
+#     start_context="Life is all about", tokenizer=tokenizer)
 
 # total_parameters = sum(x.numel() for x in model.parameters())
 # final_params = total_parameters - (sum(p.numel() for p in model.out_layer.parameters()))
@@ -118,7 +118,7 @@ train_losses, val_losses, tokens_seen = train_gpt(
 
 # torch.save(model.state_dict(),'model.pth')
 
-torch.save({
-    'model_state_dict':model.state_dict(),
-    'optimizer_state_dict':optimizer.state_dict()
-},'C:\Subbu\llms_from_scratch\model\model_optimizer.pth')
+# torch.save({
+#     'model_state_dict':model.state_dict(),
+#     'optimizer_state_dict':optimizer.state_dict()
+# },'C:\Subbu\llms_from_scratch\model\model_optimizer.pth')

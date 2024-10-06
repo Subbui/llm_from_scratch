@@ -1,8 +1,8 @@
 import torch
 import tiktoken
-from gpt import GPT
+from src.GPT_Train.gpt import GPT
 # from gpt_train import config_gpt
-from dataloader import DataLoader_v1
+from src.GPT_Train.dataloader import DataLoader_v1
 
 
 
