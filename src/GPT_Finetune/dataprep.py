@@ -65,6 +65,23 @@ class SpamDataLoader(Dataset):
                 max_length = len(encoded_text)
         return max_length
     
-train_loader = SpamDataLoader(r"C:\Subbu\llm_from_scratch\data\sms_spam_collection\trian.csv",tokenizer)
+train_data = SpamDataLoader(r"C:\Subbu\llm_from_scratch\data\sms_spam_collection\trian.csv",tokenizer)
+val_data = SpamDataLoader(r"C:\Subbu\llm_from_scratch\data\sms_spam_collection\val.csv",tokenizer,max_length=train_data.max_length)
+test_data = SpamDataLoader(r"C:\Subbu\llm_from_scratch\data\sms_spam_collection\test.csv",tokenizer,max_length=train_data.max_length)
 
+num_workers=0
+batch_size=8
+train_loader = DataLoader(dataset=train_data,
+                          batch_size=batch_size,
+                          num_workers=num_workers,
+                          drop_last=True)
+val_loader = DataLoader(dataset=val_data,
+                        batch_size=batch_size,
+                        num_workers=num_workers,
+                        drop_last=False)
+test_loader = DataLoader(dataset=test_data,
+                        batch_size=batch_size,
+                        num_workers=num_workers,
+                        drop_last=False)
 
+print(len(train_loader),len(val_loader),len(test_loader))
